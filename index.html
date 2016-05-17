@@ -1,0 +1,114 @@
+<html>
+  <head>
+    <script src="lib/js/jquery-1.12.3.min.js"></script>
+    <script src="lib/js/papaparse.min.js" ></script>
+    <script src="lib/js/d3.min.js" ></script>
+    <script src="lib/js/metricsgraphics.js" ></script>
+
+    <link rel="stylesheet" href="lib/css/metricsgraphics.css" ></link>
+    <link rel="stylesheet" href="lib/css/metricsgraphics-demo.css" ></link>
+    <link rel="stylesheet" href="lib/css/bootstrap.min.css" ></link>
+    <link href="https://netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.css" rel="stylesheet" type="text/css">
+    <style>
+      html{
+        font-size: 15px;
+      }
+
+      .gr_container{
+        margin-top: 50px;
+        margin-left: 0px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="gr_container">
+
+    </div>
+  </body>
+
+
+
+  <script>
+
+    $(document).ready(function(){
+      drawColumn("data/one_commit_j1.csv", 48, "test0", "Одна задача (1 ядро)", "Загрузка CPU")
+      drawColumn("data/one_commit_j8.csv", 48, "test1", "Одна задача (8 ядер)", "Загрузка CPU")
+      drawColumn("data/one_commit_j4.csv", 48, "test2", "Одна задача (4 ядра)", "Загрузка CPU")
+      //drawColumn("data/one_commit.csv", 54, "test3", "Использование памяти", "память (ГБ)", false, 0.000000001)
+    });
+
+
+
+
+
+    function drawColumn(filename, column, id, title, y_title, percentage, y_mltpl){
+      if(percentage == undefined)
+        percentage = true;
+
+      if(y_mltpl == undefined)
+        y_mltpl = 1;
+
+      $.get(filename, function(data){
+        Papa.parse(data, {
+          dynamicTyping: true,
+          complete: function(res){
+              console.log(res)
+              _drawColumn(res, column, id, title, y_title, percentage, y_mltpl)
+          }
+        });
+      });
+
+      function _drawColumn(raw_data, column, id, title, y_title, percentage, y_mltpl){
+        var data = [];
+        var i = 0;
+        for(var k in raw_data.data){
+          if(parseInt(k) > 6){
+            var val = raw_data.data[k][column];
+            if(val != undefined){
+              data[i] = {
+                time: i,
+                value: val*y_mltpl
+              }
+
+              i++;
+            }
+          }
+        }
+
+        console.log(data)
+
+        var markers = [
+          /*{
+           'time': 50,
+           'label': '1st Milestone'
+         }*/
+        ];
+
+        $(".gr_container").append($("<div>").attr("id", id));
+
+        MG.data_graphic({
+          title: title,
+          //description: "Here is an example that shows percentages.",
+          data: data,
+          markers: markers,
+          width: 700,
+          height: 200,
+          left: 120,
+          y_extended_ticks: true,
+          x_accessor: 'time',
+          y_accessor: 'value',
+          x_label: "время (секунды)",
+          y_label: y_title,
+          yax_format: percentage==true?function(v){return v+"%"}:null,
+          target: '#'+id,
+          max_x: 300,
+          y_rug: true
+        });
+
+        }
+      }
+
+
+
+  </script>
+</html>
