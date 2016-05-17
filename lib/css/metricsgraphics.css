@@ -216,6 +216,38 @@ tspan.hist-symbol {
     fill: #5c5c5c;
 }
 
+.mg-line6-color {
+    stroke: orange;
+}
+
+.mg-hover-line6-color {
+    fill: orange;
+}
+
+.mg-line7-color {
+    stroke: violet;
+}
+
+.mg-hover-line7-color {
+    fill: violet;
+}
+
+.mg-line8-color {
+    stroke: brown;
+}
+
+.mg-hover-line8-color {
+    fill: brown;
+}
+
+.mg-line9-color {
+    stroke: yellow;
+}
+
+.mg-hover-line9-color {
+    fill: yellow;
+}
+
 .mg-line-legend text {
     font-size: 0.9rem;
     font-weight: 300;
@@ -302,6 +334,20 @@ path.mg-main-line {
     stroke-width: 1.1px;
 }
 
+path.mg-main-line.bold{
+  fill: none;
+  opacity: 1;
+  stroke-width: 2.1px;
+}
+
+path.mg-main-line.none{
+  fill: none;
+  opacity: 0.8;
+  stroke-width: 0.2px;
+}
+
+
+
 .mg-points circle {
     fill-opacity: 0.4;
     stroke-opacity: 1;
@@ -314,7 +360,7 @@ circle.mg-points-mono {
 
 tspan.mg-points-mono {
     fill: #0000ff;
-    stroke: #0000ff; 
+    stroke: #0000ff;
 }
 
 /* a selected point in a scatterplot */
