@@ -1,8 +1,8 @@
-# CI intergration proj for MPD Root
+## CI intergration project for MPD Root
 
-## INSTALLATION AND TROUBLESHOOTING  
+#### INSTALLATION AND TROUBLESHOOTING  
 
-SETUP OF RUNNER:  
+##### SETUP OF RUNNER:  
 
 1) install docker  
   apt-get install docker.io - old ver (works good); see docker site for newer ver  
@@ -27,7 +27,7 @@ additional software
 7) dstat - log cpu,mem,nwk usage  
 
 
-TROUBLES  
+##### TROUBLES  
 
 1) symptm: build output hangs and build never ends; runner logs 400 Bad Request err (when submitting log to coordinator)  
    SOLUTION:   
