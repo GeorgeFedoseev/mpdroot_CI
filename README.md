@@ -1,4 +1,4 @@
-## CI intergration project for MPD Root
+## CI integration project for MPD Root
 
 #### INSTALLATION AND TROUBLESHOOTING  
 
