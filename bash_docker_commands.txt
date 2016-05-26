@@ -1,0 +1,6 @@
+### remove images by name
+for i in `sudo docker images|grep none |awk '{print $3}'`;do sudo docker rmi -f $i;done
+
+
+docker rm `docker ps -a | grep Exited | awk '{print $1 }'`
+docker rmi `docker images -aq`
